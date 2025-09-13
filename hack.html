@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CodeLearn - Programming Education Platform</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: #333;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      color: white;
+      text-align: center;
+      padding: 25px;
+      font-size: 28px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 25px;
+      padding: 30px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    h2 {
+      color: #4a4a4a;
+      margin-bottom: 15px;
+      font-size: 20px;
+      border-left: 5px solid #667eea;
+      padding-left: 10px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 250px;
+      font-family: monospace;
+      font-size: 15px;
+      padding: 12px;
+      border-radius: 12px;
+      border: 2px solid #ddd;
+      outline: none;
+      transition: 0.2s;
+      background: #fafafa;
+    }
+
+    textarea:focus {
+      border-color: #667eea;
+      box-shadow: 0 0 8px rgba(102,126,234,0.4);
+    }
+
+    button {
+      margin-top: 12px;
+      padding: 12px 20px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border: none;
+      color: white;
+      font-size: 15px;
+      font-weight: bold;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      background: linear-gradient(135deg, #5a6fd6, #693c96);
+    }
+
+    pre {
+      background: #f4f6fb;
+      padding: 15px;
+      border-radius: 12px;
+      font-size: 14px;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+
+    .tutorial p {
+      background: #f7f7ff;
+      padding: 10px 14px;
+      border-radius: 8px;
+      margin: 8px 0;
+      border-left: 4px solid #667eea;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    🚀 CodeLearn - Programming Education Platform
+  </header>
+
+  <div class="container">
+    <!-- Code Editor -->
+    <div class="card">
+      <h2>💻 Code Editor</h2>
+      <textarea id="code" placeholder="Write your JavaScript code here...">
+console.log("Hello, World!");
+      </textarea>
+      <br>
+      <button onclick="runCode()">▶ Run Code</button>
+      <button onclick="checkErrors()">🔍 Check Errors</button>
+    </div>
+
+    <!-- Output Section -->
+    <div class="card">
+      <h2>📜 Output</h2>
+      <pre id="outputBox">Run your code to see output...</pre>
+      <h2>🐞 Debugging Suggestions</h2>
+      <pre id="errorBox">Check errors to see suggestions...</pre>
+    </div>
+
+    <!-- Tutorials / Exercises -->
+    <div class="card tutorial">
+      <h2>📘 Tutorials & Exercises</h2>
+      <p><b>Exercise 1:</b> Print "Hello, World!"</p>
+      <p><b>Exercise 2:</b> Create a loop from 1 to 10</p>
+      <p><b>Exercise 3:</b> Write a function to add two numbers</p>
+      <p><i>Tip:</i> Modify your code in the editor and test!</p>
+    </div>
+  </div>
+
+  <script>
+    function runCode() {
+      let code = document.getElementById("code").value;
+      let outputBox = document.getElementById("outputBox");
+      try {
+        let result = eval(code);
+        outputBox.textContent = result !== undefined ? result : "✅ Code executed successfully!";
+      } catch (error) {
+        outputBox.textContent = "❌ Runtime Error: " + error.message;
+      }
+    }
+
+    function checkErrors() {
+      let code = document.getElementById("code").value;
+      let errorBox = document.getElementById("errorBox");
+      try {
+        new Function(code);
+        errorBox.textContent = "✅ No syntax errors found!";
+      } catch (error) {
+        errorBox.textContent = "❌ Error: " + error.message + 
+          "\n💡 Suggestion: Check brackets, semicolons, or function syntax.";
+      }
+    }
+  </script>
+</body>
+</html>
